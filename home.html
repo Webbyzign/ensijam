@@ -33,10 +33,50 @@
             padding: 7px 15px;
             border-radius: 10px;
             border-width: 2px;
-        }.animative-btn:hover{
-            background-color:  #997d3c;
-            color: black;
+            cursor: pointer;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      transition: all 0.4s ease-in-out;
         }
+      .animative-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(270deg,#000 , #5a4a27,#997d3c);
+      background-size: 600% 600%;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+    }
+      .animative-btn:hover{
+            background-color:  #997d3c;
+            color: white;
+            border-radius: 20px;
+        }
+        .animative-btn:hover::before,
+    .animative-btn:active::before {
+      opacity: 1;
+      animation: moveGradient 2s linear infinite;
+    }
+
+     @keyframes moveGradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
+    }
+    .btttn{
+      padding: 10px 15px;background-color:  #997d3c;border-radius: 10px;color: white;
+    }
+    .btttn:hover{
+      border-radius: 20px;
+    }
           .gradient-text {
     font-size: 70px;               /* keep your original size */
     font-weight: 700;              /* optional: makes gradient pop */
@@ -205,52 +245,74 @@
   background: #0e0c0b;
   color: #ffffff;
   padding: 50px 0;
-  display: flex;           /* allow easy centring if you add vertical rules later */
-  justify-content: center; /* horizontal centring */
+  display: flex;
+  justify-content: center;
 }
 
 .sc-container {
   width: 85%;
-  max-width: 1200px;        /* optional: keep it from getting too wide on 4K screens */
+  max-width: 1200px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 40px;               /* space between the two columns */
+  gap: 40px;
 }
 
-/* --- Image --- */
+/* --- Image (carousel support) --- */
 .sc-image-wrap {
   background: #1c1a19;
-  padding: 15px;
+  padding: 0; /* remove inner padding to avoid shifting carousel */
   border-radius: 20px;
-  flex: 1 1 300px;         /* grow/shrink, minimum 300 px */
+  flex: 1 1 300px;
+  position: relative;
+  overflow: hidden;
+  height: 400px; /* fixed height for image visibility */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
+
 .sc-image {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  border-radius: 15px;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 0;
+}
+
+.sc-image.active {
+  opacity: 1;
+  z-index: 1;
 }
 
 /* --- Text --- */
 .sc-text {
   flex: 1 1 300px;
 }
+
 .sc-logo {
   width: 75px;
   margin-bottom: 20px;
 }
+
 .sc-tagline {
   margin: 0;
   font-size: 40px;
   letter-spacing: 1px;
   margin-top: -12px;
 }
+
 .sc-heading {
   margin: 0;
   font-weight: 700;
   font-size: 45px;
-  color: #c2a55b; 
-  margin-top: -12px;         /* gold tone from the screenshot */
+  color: #c2a55b;
+  margin-top: -12px;
 }
+
 .sc-quote {
   font-size: 18px;
   line-height: 1.6;
@@ -264,7 +326,15 @@
     flex-direction: column;
     text-align: center;
   }
-  .sc-text { max-width: none; }
+
+  .sc-text {
+    max-width: none;
+  }
+
+  .sc-image-wrap {
+    width: 100%;
+    height: 300px; /* slightly smaller height for mobile */
+  }
 }
 </style>
 
@@ -333,7 +403,16 @@
       padding: 15px;
       text-align: center;
       height: 100%;
+      transition: 5sec;
     }
+  .card:hover{
+    background-color: #3b311b;
+    color: white;
+  }
+ 
+  .card:hover .text-section h1{
+    color: white;
+  }
 
     .card img {
       max-width: 100%;
@@ -478,6 +557,10 @@
   box-shadow:0 14px 30px rgba(0,0,0,.18);
   position:relative;
   overflow:hidden;
+}
+
+.feature-card:hover .icon{
+  transform: scale(1.1);
 }
 
 .feature-card .title{
@@ -706,7 +789,7 @@
                      <p style="margin-top: 20px;">We, the Ensijam Group, are a leading business service center
  in Dubai aimed at fulfilling your business requirements and all
  kinds of document clearing services.</p>
- <button style="padding: 10px 15px;background-color:  #997d3c;border-radius: 10px;color: white;">GET A FREE ESTIMATE</button> <button class="animative-btn">VIEW OUR SERVICES</button>
+ <button class="btttn">GET A FREE ESTIMATE</button> <button class="animative-btn">VIEW OUR SERVICES</button>
                    </div>
                    
                
@@ -764,7 +847,7 @@
       
       <!-- Left Icon/Image -->
       <div class="col-md-6 text-center mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="100">
-        <img src="SEAT.png" alt="Service Icon" style="max-width: 230px; filter: drop-shadow(0 0 10px rgba(0,0,0,0.4));">
+        <img class="floating" src="SEAT.png" alt="Service Icon" style="max-width: 230px; filter: drop-shadow(0 0 10px rgba(0,0,0,0.4));">
       </div>
 
       <!-- Right Content -->
@@ -1216,14 +1299,17 @@ ONLINE NOTARY
 <section class="satisfied-customers" style="max-width: 85%;margin: 0 auto;border-radius: 10px;margin-top: 70px;">
   <div class="sc-container">
 
-    <!-- ─── Image side ────────────────────────────────────────────────────── -->
-    <div class="sc-image-wrap"  data-aos="fade-right">
-      <img
-        src="https://www.shutterstock.com/image-photo/two-happy-busy-middle-aged-600nw-2479065515.jpg"
-        alt="Happy customers shaking hands"
-        class="sc-image"
-      >
-    </div>
+    <!-- ─── Image side (Now Carousel) ───────────────────────────────────────── -->
+<div class="sc-image-wrap" data-aos="fade-right" style="position: relative; overflow: hidden;">
+  <img src="one.jpg" class="sc-image active" alt="Customer 1" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 1s;">
+  <img src="five.jpg" class="sc-image" alt="Customer 2" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1s;">
+   <img src="eleven.jpg" class="sc-image" alt="Customer 3" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1s;">
+  <img src="four.webp" class="sc-image" alt="Customer 3" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1s;">
+  <img src="two.jpg" class="sc-image" alt="Customer 3" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1s;">
+  
+   <img src="three.jpg" class="sc-image" alt="Customer 3" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1s;">
+</div>
+
 
     <!-- ─── Text side ─────────────────────────────────────────────────────── -->
     <div class="sc-text"  data-aos="fade-left">
@@ -1239,6 +1325,18 @@ ONLINE NOTARY
     </div>
   </div>
 </section>
+
+<script>
+  const images = document.querySelectorAll('.sc-image-wrap .sc-image');
+  let current = 0;
+
+  setInterval(() => {
+    images[current].style.opacity = 0;
+    current = (current + 1) % images.length;
+    images[current].style.opacity = 1;
+  }, 3000); // every 3 seconds
+</script>
+
 
 
 
