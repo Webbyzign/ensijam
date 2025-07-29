@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Next Net AI - Visibility Hero</title>
+    <title>Ensijam - Buisness World</title>
     <!-- Add this in the head section -->
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -968,6 +968,75 @@
             margin: 0 auto;
         }
 
+        
+</style>
+<style>
+
+
+
+    /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: linear-gradient(90deg, #bb9847, #997d3c);
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(187, 152, 71, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(153, 125, 60, 0.3) 0%, transparent 50%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-content {
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #bb9847, #997d3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         /* Main Brands Container */
         .brands-container {
             position: relative;
@@ -996,7 +1065,7 @@
         /* Section Header */
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem; /* Increased margin for better separation */
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s ease;
@@ -1008,18 +1077,21 @@
         }
 
         .section-title h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+            font-size: 2.8rem; /* Slightly larger */
+            font-weight: 700; /* Bolder */
+            margin-bottom: 0.75rem;
             background: linear-gradient(135deg, #bb9847, #997d3c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: 0 2px 8px rgba(187, 152, 71, 0.3); /* Subtle text shadow */
         }
 
         .section-title p {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7); /* Slightly brighter */
+            font-size: 1.1rem; /* Slightly larger */
+            max-width: 700px;
+            margin: 0 auto;
         }
 
         /* Navigation and Display Grid */
@@ -1034,6 +1106,7 @@
         .nav-column {
             position: sticky;
             top: 100px;
+            align-self: flex-start; /* Ensure it sticks to the top of its grid area */
         }
 
         .nav-item {
@@ -1048,7 +1121,7 @@
         }
 
         .nav-item:hover {
-            border-left-color: rgba(187, 152, 71, 0.5);
+            border-left-color: rgba(187, 152, 71, 0.7); /* Stronger hover effect */
         }
 
         .nav-item.active {
@@ -1056,9 +1129,9 @@
         }
 
         .nav-number {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.4);
-            font-weight: 300;
+            font-size: 0.95rem; /* Slightly larger */
+            color: rgba(255, 255, 255, 0.5); /* Slightly less opaque */
+            font-weight: 400; /* Regular weight by default */
             min-width: 24px;
             transition: all 0.3s ease;
         }
@@ -1067,20 +1140,26 @@
             color: #bb9847;
             font-weight: 600;
             transform: scale(1.1);
+            text-shadow: 0 0 5px rgba(187, 152, 71, 0.5); /* Text shadow for active number */
         }
 
         .nav-dot {
-            width: 6px;
-            height: 6px;
+            width: 8px; /* Slightly larger */
+            height: 8px; /* Slightly larger */
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.3); /* Slightly brighter */
             transition: all 0.3s ease;
+        }
+
+        .nav-item:hover .nav-dot {
+            transform: scale(1.2); /* Slight scale on hover */
+            background: rgba(187, 152, 71, 0.5);
         }
 
         .nav-item.active .nav-dot {
             background: #bb9847;
             transform: scale(1.5);
-            box-shadow: 0 0 10px rgba(187, 152, 71, 0.5);
+            box-shadow: 0 0 12px rgba(187, 152, 71, 0.7); /* More prominent shadow for active dot */
         }
 
         /* Cards Display */
@@ -1095,36 +1174,97 @@
             left: 0;
             width: 100%;
             height: 400px;
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05); /* Slightly more opaque background */
+            backdrop-filter: blur(25px); /* More blur */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Slightly more subtle main border */
+            border-radius: 18px; /* Slightly more rounded */
+            padding: 2.5rem; /* Increased padding */
             display: grid;
             grid-template-columns: 200px 1fr;
-            gap: 2rem;
+            gap: 2.5rem; /* Increased gap */
             align-items: center;
             opacity: 0;
-            transform: translateX(50px) scale(0.95);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            /* Animation from previous response - Option 1 (Fade and Scale Up) */
+            transform: translateY(20px) scale(0.98);
+            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.03); /* Added inner shadow */
+            overflow: hidden; /* Important for containing the corner-boxes */
         }
 
         .service-card.active {
             opacity: 1;
-            transform: translateX(0) scale(1);
+            transform: translateY(0) scale(1);
         }
 
         .service-card.prev {
             opacity: 0;
-            transform: translateX(-50px) scale(0.95);
+            transform: translateY(-20px) scale(0.98);
+        }
+
+        .service-card:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.03) 100%); /* Subtle gradient on hover */
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5), inset 0 0 25px rgba(255, 255, 255, 0.05); /* Stronger shadow on hover, more inner shadow */
+            border-color: rgba(187, 152, 71, 0.3); /* Gold tint on border hover */
+        }
+
+        /* --- L-Shaped Corner Boxes --- */
+        .corner-box {
+            position: absolute;
+            width: 40px; /* Length of the L-shape arm */
+            height: 40px; /* Length of the L-shape arm */
+            border-color: #bb9847; /* Gold color for the L-shape */
+            border-style: solid;
+            transition: all 0.3s ease-out; /* Smooth transition for hover effects */
+            z-index: 2; /* Ensure they are above the card background but below content */
+            opacity: 0; /* Hidden by default */
+        }
+
+        .service-card:hover .corner-box {
+            opacity: 1; /* Show on card hover */
+            transform: translate(0, 0); /* Move into position on hover */
+        }
+
+        /* Top-Left Corner */
+        .corner-box.top-left {
+            top: 0;
+            left: 0;
+            border-width: 2px 0 0 2px; /* Top and left borders */
+            border-top-left-radius: 8px; /* Match card border-radius partially */
+            transform: translate(-10px, -10px); /* Slightly outside the card */
+        }
+
+        /* Top-Right Corner */
+        .corner-box.top-right {
+            top: 0;
+            right: 0;
+            border-width: 2px 2px 0 0; /* Top and right borders */
+            border-top-right-radius: 8px;
+            transform: translate(10px, -10px); /* Slightly outside the card */
+        }
+
+        /* Bottom-Left Corner */
+        .corner-box.bottom-left {
+            bottom: 0;
+            left: 0;
+            border-width: 0 0 2px 2px;
+            border-bottom-left-radius: 8px;
+            transform: translate(-10px, 10px); /* Slightly outside the card */
+        }
+
+        /* Bottom-Right Corner */
+        .corner-box.bottom-right {
+            bottom: 0;
+            right: 0;
+            border-width: 0 2px 2px 0;
+            border-bottom-right-radius: 8px;
+            transform: translate(10px, 10px); /* Slightly outside the card */
         }
 
         /* Card Image */
         .card-image {
             width: 180px;
             height: 180px;
-            border-radius: 12px;
+            border-radius: 16px; /* Slightly more rounded */
             background: transparent;
             display: flex;
             align-items: center;
@@ -1132,25 +1272,27 @@
             position: relative;
             overflow: hidden;
             margin: 0 auto;
-            border: 2px solid rgba(187, 152, 71, 0.2);
+            border: 2px solid rgba(187, 152, 71, 0.3); /* Slightly more visible border */
             transition: all 0.3s ease;
+            box-shadow: inset 0 0 15px rgba(187, 152, 71, 0.1), 0 0 20px rgba(0, 0, 0, 0.2); /* Inner shadow and subtle outer shadow */
         }
 
         .card-image:hover {
-            border-color: rgba(187, 152, 71, 0.5);
-            transform: scale(1.05);
+            border-color: rgba(187, 152, 71, 0.7); /* Stronger hover effect */
+            transform: scale(1.08); /* More pronounced scale on hover */
+            box-shadow: inset 0 0 20px rgba(187, 152, 71, 0.2), 0 0 30px rgba(0, 0, 0, 0.3);
         }
 
         .card-image img {
-            width: 140px;
-            height: 140px;
+            width: 140px; /* Adjust this if your PNGs are different sizes */
+            height: 140px; /* Adjust this if your PNGs are different sizes */
             object-fit: contain;
-            border-radius: 8px;
+            border-radius: 10px; /* Slightly more rounded */
             transition: all 0.3s ease;
         }
 
         .card-image:hover img {
-            transform: scale(1.1);
+            transform: scale(1.15); /* More pronounced image scale */
         }
 
         .card-image::after {
@@ -1160,25 +1302,12 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(187, 152, 71, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(187, 152, 71, 0.15), transparent); /* Slightly stronger shimmer */
             transition: left 0.8s ease;
         }
 
         .service-card:hover .card-image::after {
             left: 100%;
-        }
-
-        /* Placeholder for when no image is provided */
-        .card-image-placeholder {
-            width: 140px;
-            height: 140px;
-            background: linear-gradient(135deg, #bb9847 0%, #997d3c 100%);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
         }
 
         /* Card Content */
@@ -1189,17 +1318,18 @@
         }
 
         .card-content h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 1.8rem; /* Larger heading */
+            font-weight: 700; /* Bolder */
             color: #bb9847;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem; /* Increased margin */
             line-height: 1.3;
+            text-shadow: 0 1px 5px rgba(187, 152, 71, 0.2); /* Subtle text shadow */
         }
 
         .card-content p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9); /* Brighter text */
+            line-height: 1.7; /* Increased line height for readability */
+            font-size: 1rem; /* Slightly larger text */
         }
 
         /* Next Section */
@@ -1210,16 +1340,18 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            color: #fff; /* Ensure text is white for contrast */
         }
 
         .next-content h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem; /* Consistent with section title */
             font-weight: 700;
             margin-bottom: 1rem;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .next-content p {
-            font-size: 1.1rem;
+            font-size: 1.2rem; /* Slightly larger */
             opacity: 0.9;
         }
 
@@ -1230,7 +1362,11 @@
             }
 
             .section-title h2 {
-                font-size: 2rem;
+                font-size: 2.2rem; /* Adjusted for smaller screens */
+            }
+
+            .section-title p {
+                font-size: 0.95rem;
             }
 
             .brands-grid {
@@ -1244,6 +1380,7 @@
                 justify-content: center;
                 gap: 1rem;
                 flex-wrap: wrap;
+                margin-bottom: 1rem; /* Added margin */
             }
 
             .nav-item {
@@ -1252,6 +1389,7 @@
                 padding: 0.5rem;
                 border-left: none;
                 border-bottom: 2px solid transparent;
+                padding-left: 0;
             }
 
             .nav-item.active {
@@ -1259,31 +1397,46 @@
                 border-bottom-color: #bb9847;
             }
 
+            .nav-number {
+                font-size: 0.8rem;
+            }
+
+            .nav-dot {
+                width: 5px;
+                height: 5px;
+            }
+
             .service-card {
                 grid-template-columns: 1fr;
                 text-align: center;
                 height: auto;
-                min-height: 350px;
-                padding: 1.5rem;
+                min-height: 380px; /* Increased min-height */
+                padding: 1.8rem; /* Adjusted padding */
             }
 
+            .corner-box {
+                width: 30px;
+                height: 30px;
+            }
+            .corner-box.top-left { transform: translate(-8px, -8px); }
+            .corner-box.top-right { transform: translate(8px, -8px); }
+            .corner-box.bottom-left { transform: translate(-8px, 8px); }
+            .corner-box.bottom-right { transform: translate(8px, 8px); }
+
+
             .card-image {
-                width: 150px;
-                height: 150px;
+                width: 130px; /* Smaller image size */
+                height: 130px;
+                border-radius: 12px;
             }
 
             .card-image img {
-                width: 120px;
-                height: 120px;
-            }
-
-            .card-image-placeholder {
-                width: 120px;
-                height: 120px;
+                width: 100px; /* Smaller image size */
+                height: 100px;
             }
 
             .card-content h3 {
-                font-size: 1.3rem;
+                font-size: 1.4rem; /* Adjusted for smaller screens */
             }
 
             .card-content p {
@@ -1291,7 +1444,7 @@
             }
 
             .next-content h2 {
-                font-size: 2rem;
+                font-size: 2.2rem; /* Adjusted for smaller screens */
             }
         }
 
@@ -1299,7 +1452,7 @@
         html {
             scroll-behavior: smooth;
         }
-</style>
+    </style>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
@@ -1344,89 +1497,158 @@
     <div class="progress-bar" id="progressBar"></div>
 
  <!-- HEADER SECTION WITH VIDEO BACKGROUND -->
-<header>
-        <div class="header-section">
-            <img src="ENSIJAM WEB LOGO W.png" alt="" style="width: 250px; margin-top: 30px;margin-left: 30px;">
-            <video class="header-video" autoplay muted loop playsinline>
-                <source src="oneeeeeee.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="header-content" style="margin-top: -30px;">
-                <h1 data-aos="fade-up" data-aos-delay="100">Welcome to Ensijam Business</h1>
-                <p style="margin-top: -20px;margin-bottom: 20px;font-size: 20px;font-family: 'Inter';" data-aos="fade-down" data-aos-delay="100"> We Provide A
- Comprehensive
- Array Of
- PRO Services</p>
-                <li style="text-decoration: none;">
-                    <button data-aos="fade-left" data-aos-delay="100">Get a Free Estimate</button><button data-aos="fade-right" data-aos-delay="100" style="margin-left: 20px;">View Our Services</button>
-                </li>
-                
+    <section class="hero-section">
+        <div class="hero-nav-bar">
+            <img src="ENSIJAM WEB LOGO W.png" alt="Ensijam Business Logo" class="logo" data-aos="fade-down" data-aos-delay="100">
+            <a href="#contact-us" data-aos="fade-down" data-aos-delay="200" class="nav-btn">Get a Free Estimate</a>
+        </div>
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="oneeeeeee.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay"></div>
+        <div class="hero-content">
+            <h1 data-aos="fade-down" data-aos-delay="100">Welcome to Ensijam Business</h1>
+            <p data-aos="fade-up" data-aos-delay="200">We Provide A Comprehensive Array Of PRO Services</p>
+            <div class="hero-buttons">
+                <a href="#visibility-hero" class="btn" data-aos="fade-left" data-aos-delay="300">Explore</a>
+                <a href="#our-services" class="btn secondary-btn" data-aos="fade-right" data-aos-delay="300">Our Services</a>
             </div>
         </div>
-    </header>
+    </section>
 
     
 
     
 
-    <style>
-       
 
-        /* Header Section with Fixed Video Background */
-        .header-section {
-            position: relative;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .header-video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            object-fit: cover;
-            z-index: -1;
-        }
-
-        .header-content {
+<style>
+/* --- Hero Section (Video Background) --- */
+        .hero-section {
             position: relative;
             height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
             color: white;
-            z-index: 2;
             text-align: center;
+            z-index: 1; /* Keep content above video but below overlay if needed */
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2; /* Puts video behind overlay and content */
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Darker overlay for better text contrast */
+            z-index: -1; /* Puts overlay between video and content */
+        }
+
+        .hero-content {
+            z-index: 1;
             padding: 20px;
+            position: relative; /* Needed for z-index to work against nav-bar */
         }
 
-        .header-content h1 {
-            font-size: 4em;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        .hero-content h1 {
+            font-size: clamp(2.5em, 5vw, 4.5em); /* Responsive font size */
+            margin-bottom: 15px;
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* Subtle glow */
         }
 
-        .header-content button {
+        .hero-content p {
+            font-size: clamp(1em, 2vw, 1.5em); /* Responsive font size */
+            font-weight: 300;
+            margin-bottom: 40px;
+            color: #f0f0f0;
+            opacity: 0.9;
+        }
+
+        .hero-buttons .btn {
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
-            width: 200px;
-            height: 50px;
+            border: 2px solid white;
             border-radius: 10px;
-            border: solid 2px white;
-            cursor: pointer;
-            font-size: 1.2em;
-            transition: border-radius 0.3s ease;
+            padding: 15px 30px;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.1em;
+            transition: all 0.3s ease; /* Consolidated transition */
+            font-weight: 500;
+            backdrop-filter: blur(5px); /* Subtle blur for buttons */
         }
 
-        .header-content button:hover {
+        .hero-buttons .btn:hover {
             border-radius: 50px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: #BB9847;
+            color: #BB9847;
+            box-shadow: 0 5px 15px rgba(187, 152, 71, 0.3); /* Subtle gold shadow on hover */
         }
- 
-  </style>
+
+        .hero-buttons .secondary-btn {
+            border-color: #BB9847;
+            color: #BB9847;
+        }
+
+        .hero-buttons .secondary-btn:hover {
+            background-color: rgba(187, 152, 71, 0.2);
+            border-color: white;
+            color: white;
+        }
+
+        /* Header Nav Bar (Logo & Button) */
+        .hero-nav-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 5; /* Ensure it's above the overlay */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), transparent); /* Subtle gradient background */
+        }
+
+        .hero-nav-bar .logo {
+            height: 60px; /* Adjust as needed */
+            object-fit: contain;
+        }
+
+        .hero-nav-bar .nav-btn {
+            background-color: #BB9847;
+            color: white;
+            border: 2px solid #BB9847;
+            border-radius: 8px;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .hero-nav-bar .nav-btn:hover {
+            background-color: #997D3C;
+            border-color: #997D3C;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(187, 152, 71, 0.4);
+        }
+</style>
 
     <!-- Hero Section (Extended Sticky) -->
     <section class="hero-section" id="heroSection" data-aos="zoom-in" data-aos-delay="100">
@@ -1479,7 +1701,7 @@
 
 
   <section style="
-  background: url('oneeeeeee.mp4') no-repeat center center fixed;
+  background: url('citty.jpg') no-repeat center center fixed;
   background-size: cover;
   height: 250px;
 ">
@@ -1491,60 +1713,60 @@
 </section>
 
    
-    <!-- Main Brands Container -->
-    <section class="brands-container" data-aos="fade-down" data-aos-delay="100">
+      <section class="brands-container">
         <div class="brands-sticky-wrapper">
             <div class="brands-wrapper">
-                <div class="section-title">
+               <div class="section-title">
                     
    
     
-  <div class="animated-header" id="services-header"></div>
+  <div class="animated-header" id="services-header" data-aos="fade-down" data-aos-delay="100"></div>
 
 
-                    <p style="margin-top: -30px;">Professional services tailored to your business needs</p>
+                    <p data-aos="fade-up" data-aos-delay="100" style="margin-top: -30px;">Professional services tailored to your business needs</p>
                 </div>
 
                 <div class="brands-grid">
-                <!-- Navigation Column -->
                 <div class="nav-column">
-                    <div class="nav-item active" data-index="0">
+                    <div class="nav-item active" data-index="0" data-aos="fade-down" data-aos-delay="100">
                         <span class="nav-number">01</span>
                         <div class="nav-dot"></div>
                     </div>
-                    <div class="nav-item" data-index="1">
+                    <div class="nav-item" data-index="1" data-aos="fade-down" data-aos-delay="200">
                         <span class="nav-number">02</span>
                         <div class="nav-dot"></div>
                     </div>
-                    <div class="nav-item" data-index="2">
+                    <div class="nav-item" data-index="2" data-aos="fade-down" data-aos-delay="300">
                         <span class="nav-number">03</span>
                         <div class="nav-dot"></div>
                     </div>
-                    <div class="nav-item" data-index="3">
+                    <div class="nav-item" data-index="3" data-aos="fade-down" data-aos-delay="400">
                         <span class="nav-number">04</span>
                         <div class="nav-dot"></div>
                     </div>
-                    <div class="nav-item" data-index="4">
+                    <div class="nav-item" data-index="4" data-aos="fade-down" data-aos-delay="500">
                         <span class="nav-number">05</span>
                         <div class="nav-dot"></div>
                     </div>
-                    <div class="nav-item" data-index="5">
+                    <div class="nav-item" data-index="5" data-aos="fade-down" data-aos-delay="600">
                         <span class="nav-number">06</span>
                         <div class="nav-dot"></div>
                     </div>
-                    <div class="nav-item" data-index="6">
+                    <div class="nav-item" data-index="6" data-aos="fade-down" data-aos-delay="700">
                         <span class="nav-number">07</span>
                         <div class="nav-dot"></div>
                     </div>
                 </div>
 
-                <!-- Cards Display -->
                 <div class="cards-display">
                     <div class="service-card active" data-index="0">
+                        <div class="corner-box top-left"></div>
+                        <div class="corner-box top-right"></div>
+                        <div class="corner-box bottom-left"></div>
+                        <div class="corner-box bottom-right"></div>
+
                         <div class="card-image">
-                            <!-- Replace with your PNG image -->
-                            <!-- <img src="path/to/your/office-space.png" alt="Office Space Solutions"> -->
-                            <div class="card-image-placeholder">🏢</div>
+                            <img src="path/to/your/office-space.png" alt="Office Space Solutions">
                         </div>
                         <div class="card-content">
                             <h3>Office Space Solutions</h3>
@@ -1553,10 +1775,13 @@
                     </div>
 
                     <div class="service-card" data-index="1">
+                        <div class="corner-box top-left"></div>
+                        <div class="corner-box top-right"></div>
+                        <div class="corner-box bottom-left"></div>
+                        <div class="corner-box bottom-right"></div>
+
                         <div class="card-image">
-                            <!-- Replace with your PNG image -->
-                            <!-- <img src="path/to/your/amer-services.png" alt="AMER Services"> -->
-                            <div class="card-image-placeholder">📋</div>
+                            <img src="path/to/your/amer-services.png" alt="AMER Services">
                         </div>
                         <div class="card-content">
                             <h3>AMER Services</h3>
@@ -1565,10 +1790,13 @@
                     </div>
 
                     <div class="service-card" data-index="2">
+                        <div class="corner-box top-left"></div>
+                        <div class="corner-box top-right"></div>
+                        <div class="corner-box bottom-left"></div>
+                        <div class="corner-box bottom-right"></div>
+
                         <div class="card-image">
-                            <!-- Replace with your PNG image -->
-                            <!-- <img src="path/to/your/sponsorship.png" alt="Local Sponsorship"> -->
-                            <div class="card-image-placeholder">🤝</div>
+                            <img src="path/to/your/sponsorship.png" alt="Local Sponsorship">
                         </div>
                         <div class="card-content">
                             <h3>Local Sponsorship</h3>
@@ -1577,10 +1805,13 @@
                     </div>
 
                     <div class="service-card" data-index="3">
+                        <div class="corner-box top-left"></div>
+                        <div class="corner-box top-right"></div>
+                        <div class="corner-box bottom-left"></div>
+                        <div class="corner-box bottom-right"></div>
+
                         <div class="card-image">
-                            <!-- Replace with your PNG image -->
-                            <!-- <img src="path/to/your/attestation.png" alt="Certificate Attestation"> -->
-                            <div class="card-image-placeholder">📜</div>
+                            <img src="path/to/your/attestation.png" alt="Certificate Attestation">
                         </div>
                         <div class="card-content">
                             <h3>Certificate Attestation</h3>
@@ -1589,10 +1820,13 @@
                     </div>
 
                     <div class="service-card" data-index="4">
+                        <div class="corner-box top-left"></div>
+                        <div class="corner-box top-right"></div>
+                        <div class="corner-box bottom-left"></div>
+                        <div class="corner-box bottom-right"></div>
+
                         <div class="card-image">
-                            <!-- Replace with your PNG image -->
-                            <!-- <img src="path/to/your/notary.png" alt="Online Notary Services"> -->
-                            <div class="card-image-placeholder">💻</div>
+                            <img src="path/to/your/notary.png" alt="Online Notary Services">
                         </div>
                         <div class="card-content">
                             <h3>Online Notary Services</h3>
@@ -1601,10 +1835,13 @@
                     </div>
 
                     <div class="service-card" data-index="5">
+                        <div class="corner-box top-left"></div>
+                        <div class="corner-box top-right"></div>
+                        <div class="corner-box bottom-left"></div>
+                        <div class="corner-box bottom-right"></div>
+
                         <div class="card-image">
-                            <!-- Replace with your PNG image -->
-                            <!-- <img src="path/to/your/tasheel.png" alt="Tasheel Services"> -->
-                            <div class="card-image-placeholder">⚡</div>
+                            <img src="path/to/your/tasheel.png" alt="Tasheel Services">
                         </div>
                         <div class="card-content">
                             <h3>Tasheel Services</h3>
@@ -1613,10 +1850,13 @@
                     </div>
 
                     <div class="service-card" data-index="6">
+                        <div class="corner-box top-left"></div>
+                        <div class="corner-box top-right"></div>
+                        <div class="corner-box bottom-left"></div>
+                        <div class="corner-box bottom-right"></div>
+
                         <div class="card-image">
-                            <!-- Replace with your PNG image -->
-                            <!-- <img src="path/to/your/agreement.png" alt="Agreement Typing"> -->
-                            <div class="card-image-placeholder">📝</div>
+                            <img src="path/to/your/agreement.png" alt="Agreement Typing">
                         </div>
                         <div class="card-content">
                             <h3>Agreement Typing</h3>
@@ -1653,7 +1893,7 @@
             </div>
 
             <!-- Middle section with scrolling cards -->
-            <div class="deck-middle-section">
+            <div class="deck-middle-section" data-aos="fade-up" data-aos-delay="100">
                 <!-- Card 1 - Discover -->
                 <div class="deck-card deck-card-1">
                     <div class="deck-card-content">
@@ -1996,10 +2236,10 @@
                     <div class="guide-progress-bar-fill"></div>
                 </div>
                 <div class="guide-progress-dots" data-aos="fade-down" data-aos-delay="100">
-                    <div class="guide-progress-dot"></div>
-                    <div class="guide-progress-dot"></div>
-                    <div class="guide-progress-dot"></div>
-                    <div class="guide-progress-dot"></div>
+                    <div class="guide-progress-dot" data-aos="fade-down" data-aos-delay="100"></div>
+                    <div class="guide-progress-dot" data-aos="fade-down" data-aos-delay="200"></div>
+                    <div class="guide-progress-dot" data-aos="fade-down" data-aos-delay="300"></div>
+                    <div class="guide-progress-dot" data-aos="fade-down" data-aos-delay="400"></div>
                 </div>
             </div>
 
@@ -2260,7 +2500,7 @@ service quality and customer satisfaction.
     }
 </style>
 
-<footer class="footer" data-aos="zoom-in" data-aos-delay="100">
+<footer class="footer">
     <div class="footer-container">
         <div class="footer-about">
             <img src="ENSIJAM WEB LOGO W.png" alt="Ensijam Business" class="footer-logo">
@@ -2706,8 +2946,13 @@ service quality and customer satisfaction.
                         card.style.transform = 'translateX(0) scale(1)';
                         card.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.3)';
                     }
+                    else { // Ensure non-active cards revert their transform on mouseleave
+                        card.style.transform = '';
+                        card.style.boxShadow = '';
+                    }
                 });
             });
+
 
             // Throttled scroll event listener
             let isScrolling = false;
