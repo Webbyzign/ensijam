@@ -282,6 +282,67 @@
 
         
     </style>
+
+    <!--cursor css-->
+<style>
+ /* Custom Cursor: Magnetic Dot */
+body {
+    cursor: none; /* Hides the default system cursor */
+}
+
+.magnetic-dot {
+    position: fixed;
+    width: 8px; /* Size of the main cursor dot */
+    height: 8px;
+    background-color: #bb9847; /* Your gold accent color */
+    border-radius: 50%;
+    pointer-events: none; /* Allows clicks to pass through */
+    transform: translate(-50%, -50%); /* Centers the dot on the mouse coordinates */
+    z-index: 9999; /* Ensures it's always on top */
+    transition: width 0.2s ease, height 0.2s ease; /* Smooth transition for dot size */
+}
+
+.magnetic-circle {
+    position: fixed;
+    width: 40px; /* Default size of the magnetic circle */
+    height: 40px;
+    border: 1px solid rgba(187, 152, 71, 0.4); /* Gold border, semi-transparent */
+    border-radius: 50%;
+    pointer-events: none; /* Allows clicks to pass through */
+    transform: translate(-50%, -50%); /* Centers the circle */
+    z-index: 9998; /* Just below the dot */
+    opacity: 0.8; /* Slightly visible */
+    transition: transform 0.15s ease-out, opacity 0.2s ease, width 0.2s ease, height 0.2s ease; /* Faster transition for movement */
+    filter: blur(0.5px); /* Softens the circle */
+}
+
+/* Interaction: Magnetic effect on hover over clickable elements */
+a:hover ~ .magnetic-dot,
+button:hover ~ .magnetic-dot,
+.btn:hover ~ .magnetic-dot,
+.nav-btn:hover ~ .magnetic-dot,
+.nav-item:hover ~ .magnetic-dot,
+.service-card:hover ~ .magnetic-dot,
+.deck-plan-option:hover ~ .magnetic-dot,
+.guide-card:hover ~ .magnetic-dot {
+    width: 15px; /* Dot grows slightly */
+    height: 15px;
+}
+
+a:hover ~ .magnetic-circle,
+button:hover ~ .magnetic-circle,
+.btn:hover ~ .magnetic-circle,
+.nav-btn:hover ~ .magnetic-circle,
+.nav-item:hover ~ .magnetic-circle,
+.service-card:hover ~ .magnetic-circle,
+.deck-plan-option:hover ~ .magnetic-circle,
+.guide-card:hover ~ .magnetic-circle {
+    width: 60px; /* Circle expands to highlight */
+    height: 60px;
+    opacity: 1; /* Becomes fully opaque */
+    border-color: rgba(187, 152, 71, 0.8); /* Border becomes more prominent */
+}
+</style>
 <style>
         * {
             margin: 0;
@@ -3020,6 +3081,83 @@ service quality and customer satisfaction.
     once: false,
     mirror: true
   });
+</script>
+
+    <!--curson js-->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const magneticDot = document.createElement('div');
+        magneticDot.classList.add('magnetic-dot');
+        document.body.appendChild(magneticDot);
+
+        const magneticCircle = document.createElement('div');
+        magneticCircle.classList.add('magnetic-circle');
+        document.body.appendChild(magneticCircle);
+
+        let mouseX = 0;
+        let mouseY = 0;
+        let currentElement = null; // To keep track of the element being hovered over
+
+        // Function to animate the dot and circle positions
+        function animateCursor() {
+            // Smoothly move the dot
+            magneticDot.style.left = `${mouseX}px`;
+            magneticDot.style.top = `${mouseY}px`;
+
+            // If hovering over an interactive element, the magnetic circle follows that element's center
+            if (currentElement) {
+                const rect = currentElement.getBoundingClientRect();
+                const elementCenterX = rect.left + rect.width / 2;
+                const elementCenterY = rect.top + rect.height / 2;
+
+                magneticCircle.style.left = `${elementCenterX}px`;
+                magneticCircle.style.top = `${elementCenterY}px`;
+            } else {
+                // Otherwise, the magnetic circle follows the mouse with a slight lag
+                // This creates a subtle trail effect when not hovering over elements
+                magneticCircle.style.left = `${mouseX}px`;
+                magneticCircle.style.top = `${mouseY}px`;
+            }
+
+            requestAnimationFrame(animateCursor);
+        }
+
+        // Update mouse coordinates and check for interactive elements
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            // Check if the current target is an interactive element
+            const target = e.target;
+            const interactiveElements = ['A', 'BUTTON', 'INPUT', 'TEXTAREA']; // Basic interactive tags
+            const customInteractiveClasses = ['.btn', '.nav-btn', '.nav-item', '.service-card', '.deck-plan-option', '.guide-card'];
+
+            let isInteractive = false;
+            if (interactiveElements.includes(target.tagName)) {
+                isInteractive = true;
+            } else {
+                for (const className of customInteractiveClasses) {
+                    if (target.closest(className)) { // Use closest for parent elements
+                        isInteractive = true;
+                        break;
+                    }
+                }
+            }
+            
+            // Set currentElement based on hover state
+            currentElement = isInteractive ? target.closest('a, button, .btn, .nav-btn, .nav-item, .service-card, .deck-plan-option, .guide-card') : null;
+
+            // Update CSS classes on body to trigger hover styles for the custom cursors
+            if (isInteractive) {
+                document.body.classList.add('hovering-interactive');
+            } else {
+                document.body.classList.remove('hovering-interactive');
+            }
+        });
+
+        // Start the animation loop
+        requestAnimationFrame(animateCursor);
+    });
 </script>
 </body>
 </html>
